@@ -29,7 +29,7 @@ app = FastAPI(title="Maze Puzzle Game API")
 # Add CORS middleware to allow frontend to communicate with backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],  # Allowed frontend origins
+    allow_origins=["https://mazepuzzlegame.onrender.com/", "http://localhost:3000"],  # Allowed frontend origins
     allow_credentials=True,                                           # Allow credentials (cookies, auth headers)
     allow_methods=["*"],                                             # Allow all HTTP methods
     allow_headers=["*"],                                             # Allow all headers
