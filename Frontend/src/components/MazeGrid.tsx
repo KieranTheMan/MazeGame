@@ -32,10 +32,26 @@ const MazeGrid: React.FC<MazeGridProps> = ({
     const isPlayer = playerPos[0] === row && playerPos[1] === col;
     
     // Variables to track what items are in this cell
-    let keyColor = null;              // Color of key in this cell (if any)
-    let doorColor = null;             // Color of door in this cell (if any)
-    let bookColor = null;             // Color of book in this cell (if any)
+    let keyColor: string | null = null;              // Color of key in this cell (if any)
+    let doorColor: string | null = null;             // Color of door in this cell (if any)
+    let bookColor: string | null = null;             // Color of book in this cell (if any)
     let isPortal = false;             // Whether this cell is a portal
+  
+
+   // Check if there's an uncollected key at this position
+    Object.entries(keys).forEach(([color, [keyRow, keyCol]]) => {
+      if (keyRow === row && keyCol === col && !collectedKeys.includes(color)) {
+        keyColor = color;              // Set the key color if found and not collected
+      }
+    });
+    
+    // Check if there's a locked door at this position
+    Object.entries(doors).forEach(([color, [doorRow, doorCol]]) => {
+      if (doorRow === row && doorCol === col && !collectedKeys.includes(color)) {
+        doorColor = color;             // Set the door color if found and key not collected
+      }
+    });
+
   }
     
     
