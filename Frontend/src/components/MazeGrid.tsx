@@ -143,6 +143,11 @@ const MazeGrid: React.FC<MazeGridProps> = ({
           </motion.div>
         )}
 
+        {/* Render portal symbol if present (and no other items) */}
+        {isPortal && !isPlayer && !keyColor && !doorColor && !bookColor && (
+          <div className="text-lg">🌀</div>
+        )}
+
 
 
 
