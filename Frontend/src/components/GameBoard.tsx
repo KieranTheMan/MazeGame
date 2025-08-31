@@ -54,7 +54,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ token, onLogout }) => {
   const fetchMazes = useCallback(async () => {
     try {
       // Make HTTP GET request to the mazes endpoint with authentication
-      const response = await fetch('http://localhost:8000/mazes', {
+      const response = await fetch('https://mazegame-ygme.onrender.com/mazes', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       // Parse the JSON response from the server
@@ -91,7 +91,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ token, onLogout }) => {
     setLoading(true);                 // Set loading state to show spinner/disable inputs
     try {
       // Make HTTP POST request to submit the move
-      const response = await fetch('http://localhost:8000/moves', {
+      const response = await fetch('https://mazegame-ygme.onrender.com/moves', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

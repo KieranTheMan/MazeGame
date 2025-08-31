@@ -26,7 +26,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ mazeId, token }) => {
     try {
       // Make HTTP GET request to the leaderboard endpoint with maze ID
       const response = await fetch(
-        `http://localhost:8000/leaderboard/${mazeId}`,
+        `https://mazegame-ygme.onrender.com/leaderboard/${mazeId}`,
         {
           headers: { Authorization: `Bearer ${token}` }, // Include auth token in headers
         }

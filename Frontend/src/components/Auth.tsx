@@ -36,7 +36,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
         : formData;
 
       // Make HTTP POST request to the authentication endpoint
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
+      const response = await fetch(`https://mazegame-ygme.onrender.com${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" }, // Specify JSON content type
         body: JSON.stringify(body), // Convert data to JSON string
