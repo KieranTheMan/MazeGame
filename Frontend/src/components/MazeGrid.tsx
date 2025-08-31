@@ -64,18 +64,56 @@ const MazeGrid: React.FC<MazeGridProps> = ({
       // Parse the portal key to get the entrance coordinates
       const [fromRow, fromCol] = portalKey.split(',').map(Number);
       if (fromRow === row && fromCol === col) {
-        isPortal = true;               // Mark as portal if coordinates match
+        isPortal = true;    // Mark as portal if coordinates match
       }
     });
     
-
-  }
-    
-    
-    // TODO: Implement the rendering logic for the maze grid here
     return (
-        <div>
-            {/* Maze grid rendering will go here */}
+        <div  key={`${row}-${col}`} // React key for list rendering (unique per cell)
+        className={`
+          w-12 h-12 border border-gray-300 flex items-center justify-center text-xs font-bold
+          ${isWall ? 'bg-amber-800' : 'bg-white'}    // Dark brown for walls, white for paths
+          ${isPortal ? 'bg-purple-200' : ''}          // Light purple background for portals
+        `}>
+        {/* Render wall cells (empty content) */}
+        {isWall && ""}
+        {/* Render empty path cells with their original value */}
+        {!isWall && !isPlayer && !keyColor && !doorColor && !bookColor && cellValue}
+        
+        {/* Render animated key if present */}
+        {keyColor && (
+          <motion.div
+            animate={{ rotate: 360 }}   // Continuous 360-degree rotation animation
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className={`text-lg ${
+              // Conditional styling based on key color
+              keyColor === 'blue' ? 'text-blue-500' : 
+              keyColor === 'orange' ? 'text-orange-500' :
+              keyColor === 'green' ? 'text-green-500' :
+              keyColor === 'purple' ? 'text-purple-500' :
+              keyColor === 'red' ? 'text-red-500' : 'text-gray-500'
+            }`}
+          >
+            🗝️ {/* This emoji is RENDERED in the browser */}
+          </motion.div>
+        )}
+
+
+
+
+        
         </div>
+    );
+    }
+
+    // Render the grid as a table of cells
+    return (
+      <div className="maze-grid">
+        {grid.map((rowArr, rowIdx) => (
+          <div key={rowIdx} className="flex">
+            {rowArr.map((cell, colIdx) => renderCell(cell, rowIdx, colIdx))}
+          </div>
+        ))}
+      </div>
     );
 }
