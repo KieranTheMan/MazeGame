@@ -98,10 +98,24 @@ const MazeGrid: React.FC<MazeGridProps> = ({
           </motion.div>
         )}
 
+        {/* Render door if present */}
+        {doorColor && (
+          <div className={`text-lg ${
+            // Conditional styling based on door color (darker than keys)
+            doorColor === 'blue' ? 'text-blue-600' : 
+            doorColor === 'orange' ? 'text-orange-600' :
+            doorColor === 'green' ? 'text-green-600' :
+            doorColor === 'purple' ? 'text-purple-600' :
+            doorColor === 'red' ? 'text-red-600' : 'text-gray-600'
+          }`}>
+            🚪
+          </div>
+        )}
 
 
 
-        
+
+
         </div>
     );
     }
