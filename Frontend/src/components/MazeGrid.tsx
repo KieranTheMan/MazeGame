@@ -147,23 +147,22 @@ const MazeGrid: React.FC<MazeGridProps> = ({
         {isPortal && !isPlayer && !keyColor && !doorColor && !bookColor && (
           <div className="text-lg">🌀</div>
         )}
-
-
-
-
-
         </div>
     );
     }
 
-    // Render the grid as a table of cells
-    return (
-      <div className="maze-grid">
-        {grid.map((rowArr, rowIdx) => (
-          <div key={rowIdx} className="flex">
-            {rowArr.map((cell, colIdx) => renderCell(cell, rowIdx, colIdx))}
-          </div>
-        ))}
-      </div>
-    );
+   // Return the main maze grid container
+  return (
+    // Outer container with dark brown border and background
+    <div className="inline-block border-4 border-amber-900 bg-amber-900">
+      {/* Map through each row of the grid */}
+      {grid.map((row, rowIndex) => (
+        // Row container with flexbox for horizontal layout
+        <div key={rowIndex} className="flex">
+          {/* Map through each cell in the current row */}
+          {row.map((cell, colIndex) => renderCell(cell, rowIndex, colIndex))}
+        </div>
+      ))}
+    </div>
+  );
 }
