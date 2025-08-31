@@ -112,6 +112,25 @@ const MazeGrid: React.FC<MazeGridProps> = ({
           </div>
         )}
 
+         {/* Render animated book if present */}
+        {bookColor && (
+          <motion.div
+            initial={{ scale: 0.8 }}   // Start at 80% size
+            animate={{ scale: [0.8, 1.1, 1] }}  // Pulse animation: small -> large -> normal
+            transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 2 }}
+            className={`text-lg ${
+              // Conditional styling based on book color (darkest of the three)
+              bookColor === 'blue' ? 'text-blue-700' : 
+              bookColor === 'orange' ? 'text-orange-700' :
+              bookColor === 'green' ? 'text-green-700' :
+              bookColor === 'purple' ? 'text-purple-700' :
+              bookColor === 'red' ? 'text-red-700' : 'text-gray-700'
+            }`}
+          >
+            📚
+          </motion.div>
+        )}
+
 
 
 
