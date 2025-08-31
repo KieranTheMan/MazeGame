@@ -52,6 +52,23 @@ const MazeGrid: React.FC<MazeGridProps> = ({
       }
     });
 
+     // Check if there's a collectible book at this position
+    Object.entries(books).forEach(([color, [bookRow, bookCol]]) => {
+      if (bookRow === row && bookCol === col && collectedKeys.includes(color) && !collectedBooks.includes(color)) {
+        bookColor = color;             // Set the book color if key is collected but book is not
+      }
+    });
+    
+    // Check if this cell is a portal entrance
+    Object.entries(portals).forEach(([portalKey, [portalRow, portalCol]]) => {
+      // Parse the portal key to get the entrance coordinates
+      const [fromRow, fromCol] = portalKey.split(',').map(Number);
+      if (fromRow === row && fromCol === col) {
+        isPortal = true;               // Mark as portal if coordinates match
+      }
+    });
+    
+
   }
     
     
