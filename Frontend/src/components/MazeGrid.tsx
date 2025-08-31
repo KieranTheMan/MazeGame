@@ -131,6 +131,18 @@ const MazeGrid: React.FC<MazeGridProps> = ({
           </motion.div>
         )}
 
+         {/* Render animated player if present */}
+        {isPlayer && (
+          <motion.div
+            initial={{ scale: 0.8 }}   // Start at 80% size
+            animate={{ scale: 1 }}     // Scale to full size
+            transition={{ duration: 0.3 }}  // Quick animation
+            className="text-lg"
+          >
+            👨‍🎓
+          </motion.div>
+        )}
+
 
 
 
